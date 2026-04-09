@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+<body>
+    <h1>Shortener</h1>
+    <% if (locals.id) { %>
+        <p>URL Generated: http://localhost:5000/url/<%= id %></p>
+    <% } %>
+    <div>
+        <form method="post" action="/url">
+            <label>Enter your URL</label>
+            <input type="text"
+                    name="url"
+                    placeholder="https://example.com">
+            <button type="submit">Shorten</button>
+        </form>
+    </div>
+    <% if (url && url.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Short URL</th>
+                <th>Original URL</th>
+                <th>Visits</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% url.forEach(turl => { %>
+                <tr>
+                    <td>
+                        <a href="http://localhost:5000/url/<%= turl.shortId %>">
+                            <%= turl.shortId %>
+                        </a>
+                    </td>
+                    <td><%= turl.redirectURL %></td>
+                    <td><%= turl.visitHistory.length %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } %>
+</body>
+</html>

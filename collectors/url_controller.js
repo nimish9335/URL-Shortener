@@ -30,7 +30,9 @@ const shortURLHandler = async (req, res) => {
         visitHistory: []
     });
     await newEntry.save(); 
-    return res.json(newEntry);
+    return res.render('home',{
+        id:shortId
+    });
 };
 
 module.exports = {
