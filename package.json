@@ -1,26 +1,21 @@
 {
-  "name": "url-shortener",
+  "name": "short-url",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nimish9335/URL-Shortener.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nimish9335/URL-Shortener/issues"
-  },
-  "homepage": "https://github.com/nimish9335/URL-Shortener#readme",
-  "description": "",
   "dependencies": {
-    "ejs": "^5.0.1",
-    "express": "^5.2.1",
-    "mongoose": "^9.4.1",
-    "nodemon": "^3.1.14",
-    "shortid": "^2.2.17"
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0",
+    "nanoid": "^4.0.0",
+    "nodemon": "^2.0.20",
+    "shortid": "^2.2.16",
+    "uuid": "^9.0.0"
   }
 }
