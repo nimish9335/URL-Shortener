@@ -1,12 +1,13 @@
 {
   "name": "short-url",
   "version": "1.0.0",
-  "description": "",
+  "description": "URL Shortener using Node.js, Express, MongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "author": "",
+  "author": "Nimish Patel",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -14,8 +15,9 @@
     "express": "^4.18.2",
     "mongoose": "^6.9.0",
     "nanoid": "^4.0.0",
-    "nodemon": "^2.0.22",
-    "shortid": "^2.2.16",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

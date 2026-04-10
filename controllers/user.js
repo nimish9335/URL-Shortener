@@ -3,28 +3,53 @@ const User = require("../models/user");
 const { setUser } = require("../service/auth");
 
 async function handleUserSignup(req, res) {
-  const { name, email, password } = req.body;
-  await User.create({
-    name,
-    email,
-    password,
-  });
-  return res.redirect("/");
+  try {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.render("signup", {
+        error: "All fields are required",
+      });
+    }
+
+    await User.create({
+      name,
+      email,
+      password,
+    });
+
+    return res.redirect("/login");
+  } catch (err) {
+    console.error(err);
+    return res.render("signup", {
+      error: "Something went wrong",
+    });
+  }
 }
 
 async function handleUserLogin(req, res) {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email, password });
+  try {
+    const { email, password } = req.body;
 
-  if (!user)
+    const user = await User.findOne({ email, password });
+
+    if (!user) {
+      return res.render("login", {
+        error: "Invalid Email or Password",
+      });
+    }
+
+    const sessionId = uuidv4();
+    setUser(sessionId, user);
+
+    res.cookie("uid", sessionId);
+    return res.redirect("/");
+  } catch (err) {
+    console.error(err);
     return res.render("login", {
-      error: "Invalid Username or Password",
+      error: "Something went wrong",
     });
-
-  const sessionId = uuidv4();
-  setUser(sessionId, user);
-  res.cookie("uid", sessionId);
-  return res.redirect("/");
+  }
 }
 
 module.exports = {
